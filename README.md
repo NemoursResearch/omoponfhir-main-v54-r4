@@ -95,6 +95,14 @@ export BIGQUERYDATASET="<BigQuery Dataset Name. It will be ignored if TARGETDATA
 export BIGQUERYPROJECT="<BigQuery Project Name. It will be ignored if TARGETDATABASE is not bigquery>"
 ```
 
+## Configuration of Podman deployment
+Create a Podman container which mounts a number of things from the host filesystem instead of incorporating w/ the Docker image.
+1. Place the above `setenv.sh` under `container/etc/tomcat/conf.d`
+2. Build the `.war` with `mvn install`
+3. Copy the `.war` to `container/var/lib/tomcat/webapps`
+4. Update `podman-start-user.sh` with the built Docker image name from above.
+5. Start the user-level podman/systemd container w/ `podman-start-user.sh`
+
 ## Configuration of Docker deployment
 This is not yet tested and validated. The same environment variables are applied here. The environment variable must be defined either using Dockerfile or docker command line when the docker image is instantiated to start running. One way to do this would be to create a env.list file containing the variables from above and then running the following command to start your deployment:
 ```

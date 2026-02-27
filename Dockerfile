@@ -11,9 +11,11 @@ FROM tomcat:jre21
 #ENV JDBC_URL=jdbc:postgresql://<host>:<port>/<database> JDBC_USERNAME=<username> JDBC_PASSWORD=<password>
 
 # Copies updated server.xml to increase HTTP Header Length allowed
-COPY server.xml $CATALINA_HOME/conf/
+COPY container/etc/tomcat/conf/server.xml $CATALINA_HOME/conf/
 
-# Copy GT-FHIR war file to webapps.
-COPY --from=builder /usr/src/app/omoponfhir-r4-server/target/omoponfhir-r4-server.war $CATALINA_HOME/webapps/ROOT.war
+
+# Import certificates from 'container/' mount
+ADD container/etc/pki/tls/certs/server.pem /usr/local/share/ca-certificates/server.pem
+RUN /opt/java/openjdk/bin/keytool -importcert -noprompt -cacerts -file /usr/local/share/ca-certificates/server.pem -trustcacerts -alias internal-server
 
 EXPOSE 8080
