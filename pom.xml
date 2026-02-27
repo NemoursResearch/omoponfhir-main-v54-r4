@@ -37,6 +37,7 @@
 		<module>omoponfhir-omopv5-sql</module>
 		<module>omoponfhir-omopv5-r4-mapping</module>
 		<module>omoponfhir-r4-server</module>
+		<module>omoponfhir-smart-bulk-data-server</module>
 	</modules>
 
 	<licenses>
