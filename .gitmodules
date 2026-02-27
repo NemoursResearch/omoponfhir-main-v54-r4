@@ -10,3 +10,6 @@
 	path = omoponfhir-r4-server
 	url = https://github.com/NemoursResearch/omoponfhir-r4-server.git
 	branch = sqlRender-with-bulk-data
+[submodule "omoponfhir-smart-bulk-data-server"]
+	path = omoponfhir-smart-bulk-data-server
+	url = https://github.com/NemoursResearch/omoponfhir-smart-bulk-data-server
